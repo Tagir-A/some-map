@@ -6,6 +6,7 @@ export default function MyMap(props) {
 	const attr = 'Map tiles and Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	const mapCenter = [0, 0]
 	const zoomLevel = 5
+	if (props) {
 	return (
 		<div class="mymap">
 			<Map
@@ -17,14 +18,19 @@ export default function MyMap(props) {
           url={tiles}
          />
 				{
+					
 					props.data.map(item => {
 						return (
 									<Marker key={item.id} position={item.coord.reverse()}>
 									</Marker>
 								)
 					})
+					
 				}
       </Map>
 		</div>
 	)
+} else return (
+	<div class="mymap"></div>
+)
 }

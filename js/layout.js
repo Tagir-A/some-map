@@ -1,38 +1,36 @@
 import React from "react"
 import MyMap from "./mymap"
 import Users from "./Users"
-
+import DataStore from "./datastore"
 
 export default class Layout extends React.Component {
 	constructor() {
 		super()
-		const req = new XMLHttpRequest()
-		req.open("GET", "http://localhost:4000/features", false)
-		req.send()
-		let data = JSON.parse(req.response)
-		let features = data.features
-		let props = []
-		let coords = []
-		for (let i in features){
-			props.push(features[i].properties)
-			coords.push(
-				{
-					id: features[i].id,
-					coord: features[i].geometry.coordinates
-				}
-			)
-		}
 		this.state = {
-			data: data,
-			props: props,
-			coords: coords,
+			data: DataStore.getData(),
 		}
+		// for (let i in features){
+		// 	props.push(features[i].properties)
+		// 	coords.push(
+		// 		{
+		// 			id: features[i].id,
+		// 			coord: features[i].geometry.coordinates
+		// 		}
+		// 	)
+		// }
+
+	}
+	componentWillMount() {
+		DataStore.updateData()
+		DataStore.on("change", () => {
+			this.setState({data: DataStore.getData()})
+		})
 	}
 	render() {
 		return (
 			<div class= "react">
-				<Users data={this.state.props}/>
-				<MyMap data={this.state.coords}/>
+				<Users data={this.state.data.props}/>
+				<MyMap data={this.state.data.coords}/>
 			</div>
 		);
 	} 

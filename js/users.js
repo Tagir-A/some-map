@@ -5,7 +5,7 @@ export default function Users(props) {
 	return (
 		<div class="users">
 			<UserList 
-				data={props.data}
+				data={props.data || {} }
 			/>
 		</div>
 	)
