@@ -29,11 +29,17 @@
 	border-bottom: 1px solid coral;
 	display: flex;
 }
+.user-bar:first-child .username {
+	background-color: #1febfc;
+	color: #000;
+}
 .user-ava {
 	padding: 5px;
 }
 .user-ava img {
 	border-radius: 50%;
+	max-width: 150px;
+	max-height: 150px;
 }
 .user-info {
 	padding: 5px 0 5px 5px;
@@ -63,3 +69,4 @@
 .userlinks li a:hover {
 	text-decoration: underline;
 }
+

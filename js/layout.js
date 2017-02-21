@@ -9,16 +9,6 @@ export default class Layout extends React.Component {
 		this.state = {
 			data: DataStore.getData(),
 		}
-		// for (let i in features){
-		// 	props.push(features[i].properties)
-		// 	coords.push(
-		// 		{
-		// 			id: features[i].id,
-		// 			coord: features[i].geometry.coordinates
-		// 		}
-		// 	)
-		// }
-
 	}
 	componentWillMount() {
 		DataStore.updateData()
